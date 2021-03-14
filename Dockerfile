@@ -28,9 +28,11 @@ RUN sed -i 's/\r$//' /*.sh ; chmod +x /*.sh && \
 	echo "land007/playwright" >> /.image_names && \
 	echo "land007/playwright" > /.image_name
 
-RUN cd / && npm i playwright playwright-video
+RUN cd / && npm i playwright playwright-video @ffmpeg-installer/ffmpeg
 RUN cd / && npm install -g node-gyp supervisor http-server && npm install socket.io ws express http-proxy bagpipe eventproxy chokidar request nodemailer await-signal log4js moment
 ADD test5.js /home/pwuser/
+
+ENV FFMPEG_PATH /node_modules/@ffmpeg-installer/linux-x64/ffmpeg
 
 CMD /task.sh ; /start.sh ; bash
 
