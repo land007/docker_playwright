@@ -29,8 +29,13 @@ RUN sed -i 's/\r$//' /*.sh ; chmod +x /*.sh && \
 	echo "land007/playwright" > /.image_name
 
 RUN cd / && npm i playwright playwright-video
-ADD test5.js /
+RUN cd / && npm install -g node-gyp supervisor http-server && npm install socket.io ws express http-proxy bagpipe eventproxy chokidar request nodemailer await-signal log4js moment
+ADD test5.js /home/pwuser/
+
+CMD /task.sh ; /start.sh ; bash
 
 #docker build -t land007/playwright:latest .
 #docker run -it --rm --ipc=host --user pwuser --security-opt seccomp=seccomp_profile.json --name playwright land007/playwright:latest
 #docker cp playwright:/home/pwuser/example.png ./Desktop
+
+
